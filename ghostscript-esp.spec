@@ -134,18 +134,17 @@ Static libijs library.
 %description ijs-static -l pl
 Statyczna wersja biblioteki IJS.
 
-%package -n cups-filter-pstoraster-esp
+%package -n cups-filter-pstoraster
 Summary:	CUPS filter for support non-postscript printers
 Summary(pl):	Filtr CUPS-a obs³uguj±cy drukarki niepostscriptowe
 Group:		Applications/Printing
 Requires:	cups >= 1:1.1.16
-Requires:	%{name} = %{version}-%{release}
-Provides:	cups-filter-pstoraster = %{version}-%{release}
+Requires:	ghostscript >=  %{version}-%{release}
 
-%description -n cups-filter-pstoraster-esp
+%description -n cups-filter-pstoraster
 CUPS filter for support non-postscript printers.
 
-%description -n cups-filter-pstoraster-esp -l pl
+%description -n cups-filter-pstoraster -l pl
 Filtr CUPS-a obs³uguj±cy drukarki niepostscriptowe.
 
 %prep
@@ -282,7 +281,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libijs.a
 
 %if %{with cups}
-%files -n cups-filter-pstoraster-esp
+%files -n cups-filter-pstoraster
 %defattr(644,root,root,755)
 %(cups-config --serverroot)/*
 %attr(755,root,root) %(cups-config --serverbin)/filter/*
