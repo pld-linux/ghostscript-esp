@@ -1,9 +1,9 @@
 #
 # Conditional build:
 %bcond_without	cups		# without CUPS support
-%bcond_with		svga		# with svgalib display support (vgalib and lvga256 devices)
+%bcond_with	svga		# with svgalib display support (vgalib and lvga256 devices)
 %bcond_without	omni		# without omni support
-
+#
 Summary:	PostScript & PDF interpreter and renderer
 Summary(de):	PostScript & PDF Interpreter und Renderer
 Summary(fr):	Interpréteur et visualisateur PostScript & PDF
@@ -30,7 +30,6 @@ Patch3:		%{name}-ijs_cflags.patch
 Patch4:		%{name}-gdevcd8-fixes.patch
 Patch5:		%{name}-glib.patch
 URL:		http://www.cups.org/ghostscript.php
-Provides:	ghostscript = %{version}-%{release}
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -48,6 +47,7 @@ BuildRequires:	libtiff-devel
 # for documentation regeneration
 BuildRequires:	tetex
 BuildRequires:	tetex-dvips
+Provides:	ghostscript = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -88,7 +88,7 @@ biçime getirebilir.
 Summary:	Ghostscript with GTK+ console
 Summary(pl):	Ghostscript z konsol± GTK+
 Group:		Applications/Graphics
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description gtk
 Ghostscript with GTK+ console.
@@ -100,7 +100,7 @@ Ghostscript z konsol± GTK+.
 Summary:	libgs header files
 Summary(pl):	Pliki nag³ówkowe libgs
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for libgs - ghostscript shared library.
@@ -112,8 +112,8 @@ Pliki nag³ówkowe libgs - wspó³dzielonej biblioteki ghostscript.
 Summary:	IJS development files
 Summary(pl):	Pliki dla programistów IJS
 Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
 Provides:	ghostscript-ijs-devel = %{version}-%{release}
-Requires:	%{name} = %{version}
 
 %description ijs-devel
 IJS development files.
@@ -125,8 +125,8 @@ Pliki do tworzenia programów z u¿yciem biblioteki IJS.
 Summary:	Static libijs library
 Summary(pl):	Statyczna biblioteka IJS
 Group:		Development/Libraries
+Requires:	%{name}-ijs-devel = %{version}-%{release}
 Provides:	ghostscript-ijs-static = %{version}-%{release}
-Requires:	%{name}-ijs-devel = %{version}
 
 %description ijs-static
 Static libijs library.
@@ -138,9 +138,9 @@ Statyczna wersja biblioteki IJS.
 Summary:	CUPS filter for support non-postscript printers
 Summary(pl):	Filtr CUPS-a obs³uguj±cy drukarki niepostscriptowe
 Group:		Applications/Printing
-Provides:       cups-filter-pstoraster = %{version}-%{release}
 Requires:	cups >= 1:1.1.16
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
+Provides:	cups-filter-pstoraster = %{version}-%{release}
 
 %description -n cups-filter-pstoraster-esp
 CUPS filter for support non-postscript printers.
@@ -242,7 +242,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/[bdeflpsux]*
 %attr(755,root,root) %{_bindir}/gs
 %attr(755,root,root) %{_bindir}/wftopfa
-%attr(755,root,root) %{_bindir}/gs[^x]*
+%attr(755,root,root) %{_bindir}/gs[!x]*
 %attr(755,root,root) %{_bindir}/ijs_client_example
 #%attr(755,root,root) %{_libdir}/libgs.so.*.*
 %attr(755,root,root) %{_libdir}/libijs.so
