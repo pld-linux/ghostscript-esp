@@ -139,7 +139,7 @@ Summary:	CUPS filter for support non-postscript printers
 Summary(pl):	Filtr CUPS-a obs³uguj±cy drukarki niepostscriptowe
 Group:		Applications/Printing
 Requires:	cups >= 1:1.1.16
-Requires:	ghostscript >=  %{version}-%{release}
+Requires:	ghostscript >= %{version}-%{release}
 
 %description -n cups-filter-pstoraster
 CUPS filter for support non-postscript printers.
