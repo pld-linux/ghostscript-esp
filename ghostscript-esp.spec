@@ -12,14 +12,14 @@ Summary(pl):	Bezp³atny interpreter i renderer PostScriptu i PDF
 Summary(tr):	PostScript & PDF yorumlayýcý ve gösterici
 Name:		ghostscript-esp
 %define gnu_ver 8.15
-%define	rc_ver	rc1
+%define	rc_ver	rc2
 Version:	%{gnu_ver}
 Release:	0.%{rc_ver}.1
 License:	GPL
 Group:		Applications/Graphics
 # Source0:	http://dl.sourceforge.net/espgs/espgs-%{version}-source.tar.bz2
 Source0:	http://ftp.easysw.com/pub/ghostscript/test/espgs-%{version}%{rc_ver}-source.tar.bz2
-# Source0-md5:	90bf6e4de8cfa2ac47c37b8096b6503b
+# Source0-md5:	7778ee0b8af60b55d327a61062cb2558
 # we need to link with libjpeg recompiled with our parameters
 Source2:	ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz
 # Source2-md5:	dbd5f3b47ed13132f04c685d608a7547
@@ -28,8 +28,7 @@ Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/ghostscript-non-englis
 Patch0:		%{name}-missquotes.patch
 Patch1:		%{name}-setuid.patch
 Patch2:		%{name}-time_h.patch
-Patch3:		%{name}-align.patch
-Patch4:		%{name}-gdevcd8-fixes.patch
+Patch3:		%{name}-gdevcd8-fixes.patch
 URL:		http://www.cups.org/ghostscript.php
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
@@ -165,9 +164,8 @@ Sterownik CUPS dla drukarek PXL.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 # NEEDS REVIEW
-#%patch4 -p1
+#%patch3 -p1
 ln -sf jp* jpeg
 
 %build
