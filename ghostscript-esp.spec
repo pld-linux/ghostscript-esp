@@ -169,6 +169,7 @@ Sterownik CUPS dla drukarek PXL.
 ln -sf jp* jpeg
 
 %build
+rm -rf autom4te.cache
 cp -f %{_datadir}/automake/config.sub .
 %{__aclocal}
 %{__autoconf}
