@@ -170,6 +170,9 @@ Sterownik CUPS dla drukarek PXL.
 %patch4 -p1
 ln -sf jp* jpeg
 
+ln -s src/configure.ac .
+ln -s src/Makefile.in .
+
 %build
 rm -rf autom4te.cache
 cp -f %{_datadir}/automake/config.sub .
@@ -207,7 +210,8 @@ install -d $RPM_BUILD_ROOT{%{_datadir}/ghostscript/lib,%{_libdir},%{_includedir}
 	datadir=$RPM_BUILD_ROOT%{_datadir} \
 	libdir=$RPM_BUILD_ROOT%{_libdir} \
 	docdir=$RPM_BUILD_ROOT%{_defaultdocdir}/%{name}-%{version} \
-	mandir=$RPM_BUILD_ROOT%{_mandir}
+	mandir=$RPM_BUILD_ROOT%{_mandir} \
+	gsdir=$RPM_BUILD_ROOT%{_datadir}/ghostscript
 
 cd ijs
 %{__make} install \
