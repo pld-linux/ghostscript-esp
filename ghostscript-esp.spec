@@ -11,13 +11,15 @@ Summary(ja):	PostScript ¥¤¥ó¥¿¡¼¥×¥ê¥¿¡¦¥ì¥ó¥À¥é¡¼
 Summary(pl):	Bezp³atny interpreter i renderer PostScriptu i PDF
 Summary(tr):	PostScript & PDF yorumlayýcý ve gösterici
 Name:		ghostscript-esp
-%define gnu_ver 7.07
-Version:	%{gnu_ver}.1
-Release:	1
+%define gnu_ver 8.15
+%define	rc_ver	rc1
+Version:	%{gnu_ver}
+Release:	0.%{rc_ver}.1
 License:	GPL
 Group:		Applications/Graphics
-Source0:	http://dl.sourceforge.net/espgs/espgs-%{version}-source.tar.bz2
-# Source0-md5:	d30bf5c09f2c7caa8291f6305cf03044
+# Source0:	http://dl.sourceforge.net/espgs/espgs-%{version}-source.tar.bz2
+Source0:	http://ftp.easysw.com/pub/ghostscript/test/espgs-%{version}%{rc_ver}-source.tar.bz2
+# Source0-md5:	90bf6e4de8cfa2ac47c37b8096b6503b
 # we need to link with libjpeg recompiled with our parameters
 Source2:	ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz
 # Source2-md5:	dbd5f3b47ed13132f04c685d608a7547
@@ -26,9 +28,7 @@ Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/ghostscript-non-englis
 Patch0:		%{name}-missquotes.patch
 Patch1:		%{name}-setuid.patch
 Patch2:		%{name}-time_h.patch
-Patch3:		%{name}-ijs_cflags.patch
 Patch4:		%{name}-gdevcd8-fixes.patch
-Patch5:		%{name}-glib.patch
 URL:		http://www.cups.org/ghostscript.php
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
@@ -147,14 +147,25 @@ CUPS filter for support non-postscript printers.
 %description -n cups-filter-pstoraster -l pl
 Filtr CUPS-a obs³uguj±cy drukarki niepostscriptowe.
 
+%package -n cups-driver-pxl
+Summary:	CUPS PXL driver
+Summary(pl):	Sterownik CUPS dla drukarek PXL
+Group:		Applications/Printing
+Requires:	cups >= 1:1.1.16
+
+%description -n cups-driver-pxl
+CUPS PXL driver.
+
+%description -n cups-driver-pxl -l pl
+Sterownik CUPS dla drukarek PXL.
+
 %prep
-%setup -q -n espgs-%{version} -a2
+%setup -q -n espgs-%{version}%{rc_ver} -a2
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
+# NEEDS REVIEW
+#%patch4 -p1
 ln -sf jp* jpeg
 
 %build
@@ -167,16 +178,18 @@ export CFLAGS
 	--with-drivers=ALL%{?with_svga:,vgalib,lvga256} \
 	--with-fontpath="%{_datadir}/fonts:%{_datadir}/fonts/Type1" \
 	--with-ijs \
+	--with-jbig2dec \
 	--without-gimp-print \
 	%{!?with_cups:--disable-cups} \
 	--with%{!?with_omni:out}-omni \
 	--with-x
 cd ijs
-%{__autoconf}
-%configure
+rm -f install-sh missing && install %{_datadir}/automake/{install-sh,missing} .
+%configure \
+	--enable-shared \
+	--enable-static
 cd ..
 
-#%%{__make} so \
 %{__make} \
 	docdir=%{_defaultdocdir}/%{name}-%{version}
 
@@ -184,7 +197,6 @@ cd ..
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_datadir}/ghostscript/lib,%{_libdir},%{_includedir}}
 
-#%%{__make} soinstall \
 %{__make} install \
 	install_prefix=$RPM_BUILD_ROOT \
 	prefix=$RPM_BUILD_ROOT%{_prefix} \
@@ -226,7 +238,7 @@ bzip2 -dc %{SOURCE5} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 ln -sf gs $RPM_BUILD_ROOT%{_bindir}/gsc
 ln -sf gs $RPM_BUILD_ROOT%{_bindir}/ghostscript
 
-install -d $RPM_BUILD_ROOT%{_includedir}/ps
+#install -d $RPM_BUILD_ROOT%{_includedir}/ps
 #install src/{iapi,errors}.h $RPM_BUILD_ROOT%{_includedir}/ps
 
 %clean
@@ -243,16 +255,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/wftopfa
 %attr(755,root,root) %{_bindir}/gs[!x]*
 %attr(755,root,root) %{_bindir}/ijs_client_example
-#%attr(755,root,root) %{_libdir}/libgs.so.*.*
-%attr(755,root,root) %{_libdir}/libijs.so
+%attr(755,root,root) %{_libdir}/libijs-*.so
 %dir %{_datadir}/ghostscript
 %dir %{_datadir}/ghostscript/lib
 %{_datadir}/ghostscript/lib/*.*
 %dir %{_datadir}/ghostscript/%{gnu_ver}
+%{_datadir}/ghostscript/%{gnu_ver}/Resource
 %dir %{_datadir}/ghostscript/%{gnu_ver}/lib
-# "*.*" will not match "Fontmap". It is OK.
 %{_datadir}/ghostscript/%{gnu_ver}/lib/*.*
-%{_datadir}/ghostscript/%{gnu_ver}/lib/CIDFnmap
+%{_datadir}/ghostscript/%{gnu_ver}/lib/[cfFx]*map
+%{_datadir}/ghostscript/%{gnu_ver}/lib/*config
 %config %verify(not size md5 mtime) %{_datadir}/ghostscript/%{gnu_ver}/lib/Fontmap
 %{_datadir}/ghostscript/%{gnu_ver}/examples
 %{_mandir}/man*/*
@@ -275,6 +287,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ijs-config
 %{_includedir}/ijs
+%attr(755,root,root) %{_libdir}/libijs.so
+%{_libdir}/*.la
+%{_pkgconfigdir}/*.pc
 
 %files ijs-static
 %defattr(644,root,root,755)
@@ -285,4 +300,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %(cups-config --serverroot)/*
 %attr(755,root,root) %(cups-config --serverbin)/filter/*
+
+%files -n cups-driver-pxl
+%defattr(644,root,root,755)
+%attr(755,root,root) %(cups-config --datadir)/model/*.ppd
 %endif
