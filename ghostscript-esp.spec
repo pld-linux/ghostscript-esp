@@ -10,7 +10,7 @@ Summary(fr):	Interpréteur et visualisateur PostScript & PDF
 Summary(ja):	PostScript ¥¤¥ó¥¿¡¼¥×¥ê¥¿¡¦¥ì¥ó¥À¥é¡¼
 Summary(pl):	Bezp³atny interpreter i renderer PostScriptu i PDF
 Summary(tr):	PostScript & PDF yorumlayýcý ve gösterici
-Name:		ghostscript
+Name:		ghostscript-esp
 %define gnu_ver 7.07
 Version:	%{gnu_ver}.1
 Release:	1
@@ -21,7 +21,7 @@ Source0:	http://dl.sourceforge.net/espgs/espgs-%{version}-source.tar.bz2
 # we need to link with libjpeg recompiled with our parameters
 Source2:	ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz
 # Source2-md5:	dbd5f3b47ed13132f04c685d608a7547
-Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
+Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/ghostscript-non-english-man-pages.tar.bz2
 # Source5-md5:	9b5953aa0cc155f4364f20036b848585
 Patch0:		%{name}-missquotes.patch
 Patch1:		%{name}-setuid.patch
@@ -29,7 +29,8 @@ Patch2:		%{name}-time_h.patch
 Patch3:		%{name}-ijs_cflags.patch
 Patch4:		%{name}-gdevcd8-fixes.patch
 Patch5:		%{name}-glib.patch
-URL:		http://www.ghostscript.com/
+URL:		http://www.cups.org/ghostscript.php
+Provides:	ghostscript = %{version}-%{release}
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -111,6 +112,7 @@ Pliki nag³ówkowe libgs - wspó³dzielonej biblioteki ghostscript.
 Summary:	IJS development files
 Summary(pl):	Pliki dla programistów IJS
 Group:		Development/Libraries
+Provides:	ghostscript-ijs-devel = %{version}-%{release}
 Requires:	%{name} = %{version}
 
 %description ijs-devel
@@ -123,6 +125,7 @@ Pliki do tworzenia programów z u¿yciem biblioteki IJS.
 Summary:	Static libijs library
 Summary(pl):	Statyczna biblioteka IJS
 Group:		Development/Libraries
+Provides:	ghostscript-ijs-static = %{version}-%{release}
 Requires:	%{name}-ijs-devel = %{version}
 
 %description ijs-static
@@ -131,17 +134,18 @@ Static libijs library.
 %description ijs-static -l pl
 Statyczna wersja biblioteki IJS.
 
-%package -n cups-filter-pstoraster
+%package -n cups-filter-pstoraster-esp
 Summary:	CUPS filter for support non-postscript printers
 Summary(pl):	Filtr CUPS-a obs³uguj±cy drukarki niepostscriptowe
 Group:		Applications/Printing
+Provides:       cups-filter-pstoraster = %{version}-%{release}
 Requires:	cups >= 1:1.1.16
 Requires:	%{name} = %{version}
 
-%description -n cups-filter-pstoraster
+%description -n cups-filter-pstoraster-esp
 CUPS filter for support non-postscript printers.
 
-%description -n cups-filter-pstoraster -l pl
+%description -n cups-filter-pstoraster-esp -l pl
 Filtr CUPS-a obs³uguj±cy drukarki niepostscriptowe.
 
 %prep
@@ -201,9 +205,9 @@ cd ijs
 	mandir=$RPM_BUILD_ROOT%{_mandir}
 cd ..
 
-install lib/{gs_frsd,pdfopt,pdfwrite}.ps $RPM_BUILD_ROOT%{_datadir}/%{name}/lib
+install lib/{gs_frsd,pdfopt,pdfwrite}.ps $RPM_BUILD_ROOT%{_datadir}/ghostscript/lib
 
-#install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/%{name}/lib
+#install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/ghostscript/lib
 rm -rf $RPM_BUILD_ROOT%{_datadir}/%{name}/doc \
 	$RPM_BUILD_ROOT%{_bindir}/*.sh \
 	$RPM_BUILD_ROOT%{_mandir}/man1/{ps2pdf1{2,3},gsbj,gsdj,gsdj500,gslj,eps2eps}.1
@@ -242,16 +246,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/ijs_client_example
 #%attr(755,root,root) %{_libdir}/libgs.so.*.*
 %attr(755,root,root) %{_libdir}/libijs.so
-%dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/lib
-%{_datadir}/%{name}/lib/*.*
-%dir %{_datadir}/%{name}/%{gnu_ver}
-%dir %{_datadir}/%{name}/%{gnu_ver}/lib
+%dir %{_datadir}/ghostscript
+%dir %{_datadir}/ghostscript/lib
+%{_datadir}/ghostscript/lib/*.*
+%dir %{_datadir}/ghostscript/%{gnu_ver}
+%dir %{_datadir}/ghostscript/%{gnu_ver}/lib
 # "*.*" will not match "Fontmap". It is OK.
-%{_datadir}/%{name}/%{gnu_ver}/lib/*.*
-%{_datadir}/%{name}/%{gnu_ver}/lib/CIDFnmap
-%config %verify(not size md5 mtime) %{_datadir}/%{name}/%{gnu_ver}/lib/Fontmap
-%{_datadir}/%{name}/%{gnu_ver}/examples
+%{_datadir}/ghostscript/%{gnu_ver}/lib/*.*
+%{_datadir}/ghostscript/%{gnu_ver}/lib/CIDFnmap
+%config %verify(not size md5 mtime) %{_datadir}/ghostscript/%{gnu_ver}/lib/Fontmap
+%{_datadir}/ghostscript/%{gnu_ver}/examples
 %{_mandir}/man*/*
 %lang(cs) %{_mandir}/cs/man*/*
 %lang(de) %{_mandir}/de/man*/*
@@ -278,7 +282,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libijs.a
 
 %if %{with cups}
-%files -n cups-filter-pstoraster
+%files -n cups-filter-pstoraster-esp
 %defattr(644,root,root,755)
 %(cups-config --serverroot)/*
 %attr(755,root,root) %(cups-config --serverbin)/filter/*
