@@ -28,6 +28,7 @@ Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/ghostscript-non-englis
 Patch0:		%{name}-missquotes.patch
 Patch1:		%{name}-setuid.patch
 Patch2:		%{name}-time_h.patch
+Patch3:		%{name}-align.patch
 Patch4:		%{name}-gdevcd8-fixes.patch
 URL:		http://www.cups.org/ghostscript.php
 BuildRequires:	XFree86-devel
@@ -164,6 +165,7 @@ Sterownik CUPS dla drukarek PXL.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 # NEEDS REVIEW
 #%patch4 -p1
 ln -sf jp* jpeg
