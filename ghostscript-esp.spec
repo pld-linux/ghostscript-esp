@@ -14,7 +14,7 @@ Name:		ghostscript-esp
 %define gnu_ver 8.15
 %define	rc_ver	rc2
 Version:	%{gnu_ver}
-Release:	0.%{rc_ver}.1
+Release:	0.%{rc_ver}.2
 License:	GPL
 Group:		Applications/Graphics
 # Source0:	http://dl.sourceforge.net/espgs/espgs-%{version}-source.tar.bz2
@@ -29,6 +29,7 @@ Patch0:		%{name}-missquotes.patch
 Patch1:		%{name}-setuid.patch
 Patch2:		%{name}-time_h.patch
 Patch3:		%{name}-gdevcd8-fixes.patch
+Patch4:		%{name}-svn.patch
 URL:		http://www.cups.org/ghostscript.php
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
@@ -166,6 +167,7 @@ Sterownik CUPS dla drukarek PXL.
 %patch2 -p1
 # NEEDS REVIEW
 #%patch3 -p1
+%patch4 -p1
 ln -sf jp* jpeg
 
 %build
