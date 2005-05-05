@@ -12,14 +12,14 @@ Summary(pl):	Bezp³atny interpreter i renderer PostScriptu i PDF
 Summary(tr):	PostScript & PDF yorumlayýcý ve gösterici
 Name:		ghostscript-esp
 %define gnu_ver 8.15
-%define	rc_ver	rc2
+%define	rc_ver	rc3
 Version:	%{gnu_ver}
-Release:	0.%{rc_ver}.2
+Release:	0.%{rc_ver}.1
 License:	GPL
 Group:		Applications/Graphics
 # Source0:	http://dl.sourceforge.net/espgs/espgs-%{version}-source.tar.bz2
 Source0:	http://ftp.easysw.com/pub/ghostscript/test/espgs-%{version}%{rc_ver}-source.tar.bz2
-# Source0-md5:	7778ee0b8af60b55d327a61062cb2558
+# Source0-md5:	e6fb2e581bd2b85368f7664be8d38186
 # we need to link with libjpeg recompiled with our parameters
 Source2:	ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz
 # Source2-md5:	dbd5f3b47ed13132f04c685d608a7547
@@ -29,7 +29,6 @@ Patch0:		%{name}-missquotes.patch
 Patch1:		%{name}-setuid.patch
 Patch2:		%{name}-time_h.patch
 Patch3:		%{name}-gdevcd8-fixes.patch
-Patch4:		%{name}-svn.patch
 URL:		http://www.cups.org/ghostscript.php
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
@@ -167,11 +166,7 @@ Sterownik CUPS dla drukarek PXL.
 %patch2 -p1
 # NEEDS REVIEW
 #%patch3 -p1
-%patch4 -p1
 ln -sf jp* jpeg
-
-ln -s src/configure.ac .
-ln -s src/Makefile.in .
 
 %build
 rm -rf autom4te.cache
@@ -209,9 +204,9 @@ install -d $RPM_BUILD_ROOT{%{_datadir}/ghostscript/lib,%{_libdir},%{_includedir}
 	bindir=$RPM_BUILD_ROOT%{_bindir} \
 	datadir=$RPM_BUILD_ROOT%{_datadir} \
 	libdir=$RPM_BUILD_ROOT%{_libdir} \
-	docdir=$RPM_BUILD_ROOT%{_defaultdocdir}/%{name}-%{version} \
 	mandir=$RPM_BUILD_ROOT%{_mandir} \
-	gsdir=$RPM_BUILD_ROOT%{_datadir}/ghostscript
+	docdir=%{_defaultdocdir}/%{name}-%{version} \
+	gsdir=%{_datadir}/ghostscript
 
 cd ijs
 %{__make} install \
