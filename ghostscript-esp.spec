@@ -48,6 +48,7 @@ BuildRequires:	libtiff-devel
 BuildRequires:	tetex
 BuildRequires:	tetex-dvips
 Provides:	ghostscript = %{version}-%{release}
+Obsoletes:	ghostscript
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -89,6 +90,7 @@ Summary:	Ghostscript with GTK+ console
 Summary(pl):	Ghostscript z konsol± GTK+
 Group:		Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
+Obsoletes:	ghostscript-gtk
 
 %description gtk
 Ghostscript with GTK+ console.
@@ -101,6 +103,7 @@ Summary:	libgs header files
 Summary(pl):	Pliki nag³ówkowe libgs
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Obsoletes:	ghostscript-devel
 
 %description devel
 Header files for libgs - ghostscript shared library.
@@ -114,6 +117,7 @@ Summary(pl):	Pliki dla programistów IJS
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Provides:	ghostscript-ijs-devel = %{version}-%{release}
+Obsoletes:	ghostscript-ijs-devel
 
 %description ijs-devel
 IJS development files.
@@ -127,6 +131,7 @@ Summary(pl):	Statyczna biblioteka IJS
 Group:		Development/Libraries
 Requires:	%{name}-ijs-devel = %{version}-%{release}
 Provides:	ghostscript-ijs-static = %{version}-%{release}
+Obsoletes:	ghostscript-ijs-static
 
 %description ijs-static
 Static libijs library.
