@@ -12,14 +12,14 @@ Summary(pl):	Bezp³atny interpreter i renderer PostScriptu i PDF
 Summary(tr):	PostScript & PDF yorumlayýcý ve gösterici
 Name:		ghostscript-esp
 %define gnu_ver 8.15
-%define	rc_ver	rc3
+%define	rc_ver	rc4
 Version:	%{gnu_ver}
 Release:	0.%{rc_ver}.1
 License:	GPL
 Group:		Applications/Graphics
 # Source0:	http://dl.sourceforge.net/espgs/espgs-%{version}-source.tar.bz2
 Source0:	http://ftp.easysw.com/pub/ghostscript/test/espgs-%{version}%{rc_ver}-source.tar.bz2
-# Source0-md5:	e6fb2e581bd2b85368f7664be8d38186
+# Source0-md5:	2519bb1a64e2677368531555bc06ecf2
 # we need to link with libjpeg recompiled with our parameters
 Source2:	ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz
 # Source2-md5:	dbd5f3b47ed13132f04c685d608a7547
@@ -220,7 +220,8 @@ cd ijs
 	datadir=$RPM_BUILD_ROOT%{_datadir} \
 	libdir=$RPM_BUILD_ROOT%{_libdir} \
 	includedir=$RPM_BUILD_ROOT%{_includedir} \
-	mandir=$RPM_BUILD_ROOT%{_mandir}
+	mandir=$RPM_BUILD_ROOT%{_mandir} \
+	pkgconfigdatadir=$RPM_BUILD_ROOT%{_pkgconfigdir}
 cd ..
 
 install lib/{gs_frsd,pdfopt,pdfwrite}.ps $RPM_BUILD_ROOT%{_datadir}/ghostscript/lib
@@ -270,7 +271,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/ghostscript/%{gnu_ver}/Resource
 %dir %{_datadir}/ghostscript/%{gnu_ver}/lib
 %{_datadir}/ghostscript/%{gnu_ver}/lib/*.*
-%{_datadir}/ghostscript/%{gnu_ver}/lib/[cfFx]*map
+%{_datadir}/ghostscript/%{gnu_ver}/lib/[cfx]*map
+%{_datadir}/ghostscript/%{gnu_ver}/lib/FAP*map
 %{_datadir}/ghostscript/%{gnu_ver}/lib/*config
 %config %verify(not size md5 mtime) %{_datadir}/ghostscript/%{gnu_ver}/lib/Fontmap
 %{_datadir}/ghostscript/%{gnu_ver}/examples
