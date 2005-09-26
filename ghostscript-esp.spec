@@ -38,6 +38,7 @@ BuildRequires:	glib2-devel
 #BuildRequires:	gtk+-devel
 BuildRequires:	libpng-devel >= 1.0.8
 BuildRequires:	libstdc++-devel
+BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	libtiff-devel
 # Required by 'gdevvglb' device.
