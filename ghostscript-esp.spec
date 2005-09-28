@@ -46,7 +46,7 @@ BuildRequires:	libtiff-devel
 # for documentation regeneration
 BuildRequires:	tetex
 BuildRequires:	tetex-dvips
-Provides:	ghostscript = %{version}-%{release}
+Provides:	ghostscript = %{epoch}:%{version}-%{release}
 Obsoletes:	ghostscript
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -88,7 +88,8 @@ biçime getirebilir.
 Summary:	Ghostscript with GTK+ console
 Summary(pl):	Ghostscript z konsol± GTK+
 Group:		Applications/Graphics
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Provides:	ghostscript-gtk = %{epoch}:%{version}-%{release}
 Obsoletes:	ghostscript-gtk
 
 %description gtk
@@ -101,7 +102,8 @@ Ghostscript z konsol± GTK+.
 Summary:	libgs header files
 Summary(pl):	Pliki nag³ówkowe libgs
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Provides:	ghostscript-devel = %{epoch}:%{version}-%{release}
 Obsoletes:	ghostscript-devel
 
 %description devel
@@ -114,8 +116,8 @@ Pliki nag³ówkowe libgs - wspó³dzielonej biblioteki ghostscript.
 Summary:	IJS development files
 Summary(pl):	Pliki dla programistów IJS
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
-Provides:	ghostscript-ijs-devel = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Provides:	ghostscript-ijs-devel = %{epoch}:%{version}-%{release}
 Obsoletes:	ghostscript-ijs-devel
 
 %description ijs-devel
@@ -128,8 +130,8 @@ Pliki do tworzenia programów z u¿yciem biblioteki IJS.
 Summary:	Static libijs library
 Summary(pl):	Statyczna biblioteka IJS
 Group:		Development/Libraries
-Requires:	%{name}-ijs-devel = %{version}-%{release}
-Provides:	ghostscript-ijs-static = %{version}-%{release}
+Requires:	%{name}-ijs-devel = %{epoch}:%{version}-%{release}
+Provides:	ghostscript-ijs-static = %{epoch}:%{version}-%{release}
 Obsoletes:	ghostscript-ijs-static
 
 %description ijs-static
@@ -143,7 +145,7 @@ Summary:	CUPS filter for support non-postscript printers
 Summary(pl):	Filtr CUPS-a obs³uguj±cy drukarki niepostscriptowe
 Group:		Applications/Printing
 Requires:	cups >= 1:1.1.16
-Requires:	ghostscript >= %{version}-%{release}
+Requires:	ghostscript >= %{epoch}:%{version}-%{release}
 
 %description -n cups-filter-pstoraster
 CUPS filter for support non-postscript printers.
