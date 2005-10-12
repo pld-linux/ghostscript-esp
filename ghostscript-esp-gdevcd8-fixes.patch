@@ -7,8 +7,8 @@ Fixes:
 	  like somebody didn't know what he's doing... now old, actual
 	  DOGCR is used, but NOBLACK can be enabled by -dUseBlack=0 though
 
---- espgs-7.05.6/src/gdevcd8.c.orig	2003-07-08 21:26:53.000000000 +0200
-+++ espgs-7.05.6/src/gdevcd8.c	2003-07-09 23:07:04.000000000 +0200
+--- espgs-8.15.1/addons/gdevcd8.c.orig	2005-01-22 03:47:19.000000000 +0100
++++ espgs-8.15.1/addons/gdevcd8.c	2005-10-12 08:16:53.192400984 +0200
 @@ -606,6 +606,7 @@
      StartRasterMode start_raster_mode;	/* output function to start raster mode */
      PrintNonBlankLines print_non_blank_lines;	/* output function to print a non blank line */
@@ -68,7 +68,7 @@ Fixes:
      code = cdj_put_param_float(plist, "MasterGamma", &mastergamma, 0.1, 9.0, code);
      code = cdj_put_param_float(plist, "GammaValC", &gammavalc, 0.0, 9.0, code);
      code = cdj_put_param_float(plist, "GammaValM", &gammavalm, 0.0, 9.0, code);
-@@ -1084,6 +1084,7 @@
+@@ -1080,6 +1084,7 @@
  
      cdj850->quality = quality;
      cdj850->papertype = papertype;
@@ -76,22 +76,22 @@ Fixes:
      cdj850->mastergamma = mastergamma;
      cdj850->gammavalc = gammavalc;
      cdj850->gammavalm = gammavalm;
-@@ -1137,7 +1137,13 @@
- 			   gx_device_printer * pdev,
- 			   struct error_val_field *error_values));
+@@ -1133,7 +1138,13 @@
+ 			gx_device_printer * pdev,
+ 			struct error_val_field *error_values);
  private int
--    do_gcr(P8(int bytecount, byte * inbyte, const byte * kvalues,
-+    do_gcr_noblack(P8(int bytecount, byte * inbyte, const byte * kvalues,
-+	      const byte * cvalues, const byte * mvalues,
-+	      const byte * yvalues, const int *kcorrect,
-+	      word * inword));
+-    do_gcr(int bytecount, byte * inbyte, const byte * kvalues,
++    do_gcr_noblack(int bytecount, byte * inbyte, const byte * kvalues,
++	   const byte * cvalues, const byte * mvalues,
++	   const byte * yvalues, const int *kcorrect,
++	   word * inword);
 +
 +private int
-+    do_gcr_gcr(P8(int bytecount, byte * inbyte, const byte * kvalues,
- 	      const byte * cvalues, const byte * mvalues,
- 	      const byte * yvalues, const int *kcorrect,
- 	      word * inword));
-@@ -1847,7 +1851,10 @@
++    do_gcr_gcr(int bytecount, byte * inbyte, const byte * kvalues,
+ 	   const byte * cvalues, const byte * mvalues,
+ 	   const byte * yvalues, const int *kcorrect,
+ 	   word * inword);
+@@ -1847,7 +1858,10 @@
  	}
  	/* Skip blank lines if any */
  	if (num_blank_lines > 0) {
@@ -103,7 +103,7 @@ Fixes:
  	    memset(data_ptrs->plane_data[0][0], 0,
  		   (misc_vars->plane_size * 2 * misc_vars->num_comps));
  	    memset(data_ptrs->plane_data_c[0][0], 0,
-@@ -1857,7 +1864,10 @@
+@@ -1857,7 +1871,10 @@
  	/* all blank lines printed, now for the non-blank lines */
  	if (cdj850->yscal && odd(lnum)) {
  	    /* output a blank black plane for odd lines */
@@ -115,7 +115,7 @@ Fixes:
  	}
  	/* now output all non blank lines */
  	while (lnum < lend && llen != 0) {
-@@ -1883,9 +1893,11 @@
+@@ -1883,9 +1900,11 @@
      int out_count = gdev_pcl_mode9compress(plane_size, curr, prev, out_data);
  
      /* and output the data */
@@ -128,7 +128,7 @@ Fixes:
      }
  }
  
-@@ -1945,15 +1957,22 @@
+@@ -1945,15 +1964,22 @@
      byte *dp = data_ptrs->data[misc_vars->scan + 2];
      int *ep = data_ptrs->errors[misc_vars->scan];
  
@@ -153,26 +153,26 @@ Fixes:
  
      /* dithering the black-plane */
      FSDlinebw(misc_vars->scan, misc_vars->plane_size,
-@@ -2028,10 +2047,17 @@
+@@ -2028,10 +2054,17 @@
         be done on all pixel-rows, since even unused color-bytes
         might generate black */
  
 +    if(cdj850->useblack) {
-+    misc_vars->is_color_data =
-+	do_gcr_gcr(misc_vars->databuff_size, data_ptrs->data[misc_vars->scan],
-+	       gamma->k, gamma->c, gamma->m, gamma->y, gamma->correct,
-+	       (word *) data_ptrs->data[misc_vars->scan]);
-+    } else {
      misc_vars->is_color_data =
 -	do_gcr(misc_vars->databuff_size, data_ptrs->data[misc_vars->scan],
-+	do_gcr_noblack(misc_vars->databuff_size, data_ptrs->data[misc_vars->scan],
++	do_gcr_gcr(misc_vars->databuff_size, data_ptrs->data[misc_vars->scan],
  	       gamma->k, gamma->c, gamma->m, gamma->y, gamma->correct,
  	       (word *) data_ptrs->data[misc_vars->scan]);
++    } else {
++    misc_vars->is_color_data =
++	do_gcr_noblack(misc_vars->databuff_size, data_ptrs->data[misc_vars->scan],
++	       gamma->k, gamma->c, gamma->m, gamma->y, gamma->correct,
++	       (word *) data_ptrs->data[misc_vars->scan]);
 +    }
  
      /* dithering the black-plane */
      FSDlinebw(misc_vars->scan, misc_vars->plane_size,
-@@ -2171,8 +2197,6 @@
+@@ -2171,8 +2204,6 @@
      int i;
  
      for (i = 0; i < 256; i++) {
@@ -181,7 +181,7 @@ Fixes:
  	kcorrect[i] = (int)
  	    (100.0 * kvalue * (
  				  pow(10.0,
-@@ -2181,7 +2205,6 @@
+@@ -2181,7 +2212,6 @@
  				  - 1.0
  	     )
  	    );
@@ -189,7 +189,7 @@ Fixes:
      }
  
      return;
-@@ -2240,7 +2263,7 @@
+@@ -2240,7 +2270,7 @@
     do real color separation, here we try a real grey component
     replacement */
  private int
@@ -198,7 +198,7 @@ Fixes:
         const byte cvalues[256], const byte mvalues[256],
         const byte yvalues[256], const int kcorrect[256],
         word * inword)
-@@ -2288,6 +2311,7 @@
+@@ -2288,6 +2318,7 @@
        } else {
  	/* save a copy of the current color before it will be modified */
  	last_color_value = *inword;
@@ -206,7 +206,7 @@ Fixes:
    NOBLACK(cyan, magenta, yellow, black);
  	if ((*cyan >= *magenta)
  	    && (*magenta >= *yellow)
-@@ -2322,6 +2346,7 @@
+@@ -2322,6 +2353,7 @@
        debug_print_string(output, strlen(output));
      }
  #endif /* 0 */
@@ -214,7 +214,7 @@ Fixes:
  	  if (   *cyan > 255)    *cyan = 255;
  	  if (*magenta > 255) *magenta = 255;
  	  if ( *yellow > 255)  *yellow = 255;
-@@ -2338,6 +2363,97 @@
+@@ -2338,6 +2370,97 @@
    return is_color;
  }
  
