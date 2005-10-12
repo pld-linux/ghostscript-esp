@@ -170,8 +170,7 @@ Sterownik CUPS dla drukarek PXL.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-# NEEDS REVIEW
-#%patch3 -p1
+%patch3 -p1
 ln -sf jp* jpeg
 
 %build
