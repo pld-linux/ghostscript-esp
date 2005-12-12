@@ -38,9 +38,9 @@ BuildRequires:	glib2-devel
 #BuildRequires:	gtk+-devel
 BuildRequires:	libpng-devel >= 1.0.8
 BuildRequires:	libstdc++-devel
+BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	libtiff-devel
 # Required by 'gdevvglb' device.
 %{?with_svga:BuildRequires:	svgalib-devel}
 # for documentation regeneration
@@ -274,7 +274,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/ghostscript/%{gnu_ver}/lib/[cfx]*map
 %{_datadir}/ghostscript/%{gnu_ver}/lib/FAP*map
 %{_datadir}/ghostscript/%{gnu_ver}/lib/*config
-%config %verify(not size md5 mtime) %{_datadir}/ghostscript/%{gnu_ver}/lib/Fontmap
+%config %verify(not md5 mtime size) %{_datadir}/ghostscript/%{gnu_ver}/lib/Fontmap
 %{_datadir}/ghostscript/%{gnu_ver}/examples
 %{_mandir}/man*/*
 %lang(cs) %{_mandir}/cs/man*/*
