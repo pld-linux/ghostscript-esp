@@ -12,12 +12,12 @@ Summary(pl):	Bezp³atny interpreter i renderer PostScriptu i PDF
 Summary(tr):	PostScript & PDF yorumlayýcý ve gösterici
 Name:		ghostscript-esp
 %define gnu_ver 8.15
-Version:	%{gnu_ver}.1
+Version:	%{gnu_ver}.2
 Release:	1
 License:	GPL
 Group:		Applications/Graphics
 Source0:	http://ftp.easysw.com/pub/ghostscript/%{version}/espgs-%{version}-source.tar.bz2
-# Source0-md5:	2a21136953c3559e6088522753b06b1f
+# Source0-md5:	66180d4c0aa44c4c51ea58e13b08f2ae
 # we need to link with libjpeg recompiled with our parameters
 Source2:	ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz
 # Source2-md5:	dbd5f3b47ed13132f04c685d608a7547
@@ -28,7 +28,7 @@ Patch1:		%{name}-setuid.patch
 Patch2:		%{name}-time_h.patch
 Patch3:		%{name}-gdevcd8-fixes.patch
 URL:		http://www.cups.org/ghostscript.php
-BuildRequires:	XFree86-devel
+BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_cups:BuildRequires:	cups-devel}
