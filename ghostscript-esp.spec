@@ -13,7 +13,7 @@ Summary(tr):	PostScript & PDF yorumlayýcý ve gösterici
 Name:		ghostscript-esp
 %define gnu_ver 8.15
 Version:	%{gnu_ver}.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Graphics
 Source0:	http://ftp.easysw.com/pub/ghostscript/%{version}/espgs-%{version}-source.tar.bz2
@@ -146,6 +146,7 @@ Summary(pl):	Filtr CUPS-a obs³uguj±cy drukarki niepostscriptowe
 Group:		Applications/Printing
 Requires:	cups >= 1:1.1.16
 Requires:	ghostscript >= %{version}-%{release}
+Conflicts:	ghostscript-afpl
 
 %description -n cups-filter-pstoraster
 CUPS filter for support non-postscript printers.
