@@ -4,6 +4,7 @@
 %bcond_with	svga		# with svgalib display support (vgalib and lvga256 devices)
 %bcond_without	omni		# without omni support
 #
+%define gnu_ver 8.15
 Summary:	PostScript & PDF interpreter and renderer
 Summary(de):	PostScript & PDF Interpreter und Renderer
 Summary(fr):	Interpréteur et visualisateur PostScript & PDF
@@ -11,7 +12,6 @@ Summary(ja):	PostScript ¥¤¥ó¥¿¡¼¥×¥ê¥¿¡¦¥ì¥ó¥À¥é¡¼
 Summary(pl):	Bezp³atny interpreter i renderer PostScriptu i PDF
 Summary(tr):	PostScript & PDF yorumlayýcý ve gösterici
 Name:		ghostscript-esp
-%define gnu_ver 8.15
 Version:	%{gnu_ver}.2
 Release:	2
 License:	GPL
@@ -28,12 +28,12 @@ Patch1:		%{name}-setuid.patch
 Patch2:		%{name}-time_h.patch
 Patch3:		%{name}-gdevcd8-fixes.patch
 URL:		http://www.cups.org/ghostscript.php
-BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_cups:BuildRequires:	cups-devel}
 BuildRequires:	docbook-style-dsssl
 BuildRequires:	glib2-devel
+BuildRequires:	xorg-lib-libX11-devel
 # for gsx
 #BuildRequires:	gtk+-devel
 BuildRequires:	libpng-devel >= 1.0.8
@@ -198,7 +198,7 @@ rm -f install-sh missing && install %{_datadir}/automake/{install-sh,missing} .
 cd ..
 
 %{__make} \
-	docdir=%{_defaultdocdir}/%{name}-%{version}
+	docdir=%{_docdir}/%{name}-%{version}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -211,7 +211,7 @@ install -d $RPM_BUILD_ROOT{%{_datadir}/ghostscript/lib,%{_libdir},%{_includedir}
 	datadir=$RPM_BUILD_ROOT%{_datadir} \
 	libdir=$RPM_BUILD_ROOT%{_libdir} \
 	mandir=$RPM_BUILD_ROOT%{_mandir} \
-	docdir=%{_defaultdocdir}/%{name}-%{version} \
+	docdir=%{_docdir}/%{name}-%{version} \
 	gsdir=%{_datadir}/ghostscript
 
 cd ijs
@@ -258,7 +258,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc %{_defaultdocdir}/%{name}-%{version}
+%doc %{_docdir}/%{name}-%{version}
 %attr(755,root,root) %{_bindir}/[bdeflpsux]*
 %attr(755,root,root) %{_bindir}/gs
 %attr(755,root,root) %{_bindir}/wftopfa
