@@ -23,7 +23,6 @@ Source2:	ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz
 # Source2-md5:	dbd5f3b47ed13132f04c685d608a7547
 Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/ghostscript-non-english-man-pages.tar.bz2
 # Source5-md5:	9b5953aa0cc155f4364f20036b848585
-Patch0:		%{name}-missquotes.patch
 Patch1:		%{name}-setuid.patch
 Patch2:		%{name}-time_h.patch
 Patch3:		%{name}-gdevcd8-fixes.patch
@@ -168,7 +167,6 @@ Sterownik CUPS dla drukarek PXL.
 
 %prep
 %setup -q -n espgs-%{version} -a2
-%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
