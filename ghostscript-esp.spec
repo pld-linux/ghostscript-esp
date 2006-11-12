@@ -262,6 +262,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/wftopfa
 %attr(755,root,root) %{_bindir}/gs[!x]*
 %attr(755,root,root) %{_bindir}/ijs_client_example
+%attr(755,root,root) %{_bindir}/ijs_server_example
 %attr(755,root,root) %{_libdir}/libijs-*.so
 %dir %{_datadir}/ghostscript
 %dir %{_datadir}/ghostscript/lib
@@ -273,6 +274,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/ghostscript/%{gnu_ver}/lib/[cfx]*map
 %{_datadir}/ghostscript/%{gnu_ver}/lib/FAP*map
 %{_datadir}/ghostscript/%{gnu_ver}/lib/*config
+%dir %{_datadir}/ghostscript/%{gnu_ver}/lib/cjkv
+%{_datadir}/ghostscript/%{gnu_ver}/lib/cjkv/*
 %config %verify(not md5 mtime size) %{_datadir}/ghostscript/%{gnu_ver}/lib/Fontmap
 %{_datadir}/ghostscript/%{gnu_ver}/examples
 %{_mandir}/man*/*
