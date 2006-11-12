@@ -12,12 +12,12 @@ Summary(pl):	Bezp³atny interpreter i renderer PostScriptu i PDF
 Summary(tr):	PostScript & PDF yorumlayýcý ve gösterici
 Name:		ghostscript-esp
 %define gnu_ver 8.15
-Version:	%{gnu_ver}.1
+Version:	%{gnu_ver}.3
 Release:	1
 License:	GPL
 Group:		Applications/Graphics
 Source0:	http://ftp.easysw.com/pub/ghostscript/%{version}/espgs-%{version}-source.tar.bz2
-# Source0-md5:	2a21136953c3559e6088522753b06b1f
+# Source0-md5:	4ec87a3da20c1b433ffbe0ffe3675fcd
 # we need to link with libjpeg recompiled with our parameters
 Source2:	ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz
 # Source2-md5:	dbd5f3b47ed13132f04c685d608a7547
@@ -48,6 +48,7 @@ BuildRequires:	tetex
 BuildRequires:	tetex-dvips
 Provides:	ghostscript = %{version}-%{release}
 Obsoletes:	ghostscript
+Conflicts:	ghostscript-afpl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -206,10 +207,8 @@ install -d $RPM_BUILD_ROOT{%{_datadir}/ghostscript/lib,%{_libdir},%{_includedir}
 %{__make} install \
 	install_prefix=$RPM_BUILD_ROOT \
 	prefix=$RPM_BUILD_ROOT%{_prefix} \
-	bindir=$RPM_BUILD_ROOT%{_bindir} \
 	datadir=$RPM_BUILD_ROOT%{_datadir} \
 	libdir=$RPM_BUILD_ROOT%{_libdir} \
-	mandir=$RPM_BUILD_ROOT%{_mandir} \
 	docdir=%{_defaultdocdir}/%{name}-%{version} \
 	gsdir=%{_datadir}/ghostscript
 
