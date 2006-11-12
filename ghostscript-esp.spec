@@ -23,7 +23,7 @@ Source2:	ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz
 # Source2-md5:	dbd5f3b47ed13132f04c685d608a7547
 Source5:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/ghostscript-non-english-man-pages.tar.bz2
 # Source5-md5:	9b5953aa0cc155f4364f20036b848585
-Patch:		%{name}-missquotes.patch
+Patch0:		%{name}-missquotes.patch
 Patch1:		%{name}-setuid.patch
 Patch2:		%{name}-time_h.patch
 Patch3:		%{name}-gdevcd8-fixes.patch
@@ -207,10 +207,8 @@ install -d $RPM_BUILD_ROOT{%{_datadir}/ghostscript/lib,%{_libdir},%{_includedir}
 %{__make} install \
 	install_prefix=$RPM_BUILD_ROOT \
 	prefix=$RPM_BUILD_ROOT%{_prefix} \
-	bindir=$RPM_BUILD_ROOT%{_bindir} \
 	datadir=$RPM_BUILD_ROOT%{_datadir} \
 	libdir=$RPM_BUILD_ROOT%{_libdir} \
-	mandir=$RPM_BUILD_ROOT%{_mandir} \
 	docdir=%{_docdir}/%{name}-%{version} \
 	gsdir=%{_datadir}/ghostscript
 
