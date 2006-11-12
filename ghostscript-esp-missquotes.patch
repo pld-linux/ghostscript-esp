@@ -58,15 +58,6 @@ diff -urN espgs-7.07.1rc2.org/lib/pfbtopfa espgs-7.07.1rc2/lib/pfbtopfa
 diff -urN espgs-7.07.1rc2.org/lib/ps2epsi espgs-7.07.1rc2/lib/ps2epsi
 --- espgs-7.07.1rc2.org/lib/ps2epsi	Sun Sep 14 18:43:09 2003
 +++ espgs-7.07.1rc2/lib/ps2epsi	Sun Sep 14 18:48:42 2003
-@@ -5,7 +5,7 @@
- 	gs=gs
- fi
- 
--tmpfile=/tmp/ps2epsi$$
-+tmpfile=`mktemp /tmp/ps2epsi.XXXXXX` || exit 1
- rm -f $tmpfile
- if test -e $tmpfile; then
- 	echo "$0: Our temporary file $tmpfile already exists." 1>&2
 @@ -16,7 +10,7 @@
  	exit 1
  fi
