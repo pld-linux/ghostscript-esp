@@ -27,6 +27,7 @@ Patch0:		%{name}-missquotes.patch
 Patch1:		%{name}-setuid.patch
 Patch2:		%{name}-time_h.patch
 Patch3:		%{name}-gdevcd8-fixes.patch
+Patch4:		%{name}-sh.patch
 URL:		http://www.cups.org/ghostscript.php
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -172,11 +173,11 @@ Sterownik CUPS dla drukarek PXL.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 ln -sf jp* jpeg
 
 %build
-rm -rf autom4te.cache
-cp -f %{_datadir}/automake/config.sub .
+cp -f /usr/share/automake/config.sub .
 %{__aclocal}
 %{__autoconf}
 CFLAGS="%{rpmcflags} -DA4"
