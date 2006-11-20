@@ -1,0 +1,11 @@
+--- espgs-8.15.3/src/configure.ac.orig	2006-08-26 02:48:07.000000000 +0200
++++ espgs-8.15.3/src/configure.ac	2006-11-20 20:03:15.736560000 +0100
+@@ -658,7 +658,7 @@
+ while test -n "$drivers"; do
+ 	if echo $drivers |grep "," >/dev/null; then
+ 		THIS="`echo $drivers |sed -e 's/,.*//'`"
+-		drivers="`echo $drivers |sed -e \"s/$THIS,//\"`"
++		drivers="$(echo $drivers |sed -e "s/$THIS,//")"
+ 	else
+ 		THIS=$drivers
+ 		drivers=""
