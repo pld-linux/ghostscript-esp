@@ -6,11 +6,11 @@
 #
 %define gnu_ver 8.15
 Summary:	PostScript & PDF interpreter and renderer
-Summary(de):	PostScript & PDF Interpreter und Renderer
-Summary(fr):	Interpréteur et visualisateur PostScript & PDF
-Summary(ja):	PostScript ¥¤¥ó¥¿¡¼¥×¥ê¥¿¡¦¥ì¥ó¥À¥é¡¼
-Summary(pl):	Bezp³atny interpreter i renderer PostScriptu i PDF
-Summary(tr):	PostScript & PDF yorumlayýcý ve gösterici
+Summary(de.UTF-8):   PostScript & PDF Interpreter und Renderer
+Summary(fr.UTF-8):   InterprÃ©teur et visualisateur PostScript & PDF
+Summary(ja.UTF-8):   PostScript ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ãƒ»ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼
+Summary(pl.UTF-8):   BezpÅ‚atny interpreter i renderer PostScriptu i PDF
+Summary(tr.UTF-8):   PostScript & PDF yorumlayÄ±cÄ± ve gÃ¶sterici
 Name:		ghostscript-esp
 Version:	%{gnu_ver}.3
 Release:	1
@@ -57,37 +57,37 @@ and PDF compliant files to devices which include an X window, many
 printer formats (including support for color printers), and popular
 graphics file formats.
 
-%description -l de
+%description -l de.UTF-8
 Ghostscipt ist ein PostScript-Interpretierer. Er kann sowohl
-PostScript als auch PDF-konforme Dateien an Geräte ausgeben, zu denen
-ein X-Fenster, viele Druckerformate (einschließlich Support für
-Farbdrucker) und gängige Grafikdateiformate zählen.
+PostScript als auch PDF-konforme Dateien an GerÃ¤te ausgeben, zu denen
+ein X-Fenster, viele Druckerformate (einschlieÃŸlich Support fÃ¼r
+Farbdrucker) und gÃ¤ngige Grafikdateiformate zÃ¤hlen.
 
-%description -l fr
-Ghostscript est un interpréteur PostScript. Il peut rendre des
-fichiers PostScript ou PDF sur des périphériques dont une fenêtre X,de
+%description -l fr.UTF-8
+Ghostscript est un interprÃ©teur PostScript. Il peut rendre des
+fichiers PostScript ou PDF sur des pÃ©riphÃ©riques dont une fenÃªtre X,de
 nombreux types d'imprimantes (dont un support pour imprimantes
 couleur), et des formats de fichiers graphiques populaires.
 
-%description -l ja
-Ghostscript ¤Ï PostScript ¥¤¥ó¥¿¡¼¥×¥ê¥¿¤Ç¤¹¡£¥Ý¥¹¥È¥¹¥¯¥ê¥×¥È¤È PDF
-¤ò¥ì¥ó¥À¥ê¥ó¥°¤·¡¢X window ¤äÂ¾¤Î¥×¥ê¥ó¥¿¥Õ¥©¡¼¥Þ¥Ã¥È¤Ç½ÐÎÏ
-¤·¤Þ¤¹¡£¤³¤Î¥Ñ¥Ã¥±¡¼¥¸¤ÏÆüËÜ¸ìÂÐ±þ¤·¤Æ¤¤¤Þ¤¹¡£
+%description -l ja.UTF-8
+Ghostscript ã¯ PostScript ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ã§ã™ã€‚ãƒã‚¹ãƒˆã‚¹ã‚¯ãƒªãƒ—ãƒˆã¨ PDF
+ã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã—ã€X window ã‚„ä»–ã®ãƒ—ãƒªãƒ³ã‚¿ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã§å‡ºåŠ›
+ã—ã¾ã™ã€‚ã“ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯æ—¥æœ¬èªžå¯¾å¿œã—ã¦ã„ã¾ã™ã€‚
 
-%description -l pl
-Ghostcript jest interpreterem PostScriptu, jêzyka u¿ywanego do opisu
-formatu dokumentu. Ghostscript potrafi przetworzyæ dokument w formacie
-PostScript i PDF na szereg postaci wyj¶ciowych: drukarki (w³±czaj±c
+%description -l pl.UTF-8
+Ghostcript jest interpreterem PostScriptu, jÄ™zyka uÅ¼ywanego do opisu
+formatu dokumentu. Ghostscript potrafi przetworzyÄ‡ dokument w formacie
+PostScript i PDF na szereg postaci wyjÅ›ciowych: drukarki (wÅ‚Ä…czajÄ…c
 kolorowe), okno X-Window i popularne formaty graficzne.
 
-%description -l tr
-GhostScript, PostScript ve PDF uyumlu dosyalarý, X penceresinde
-gösterebilir ve birçok yazýcýnýn (renkli yazýcýlar dahil) basabileceði
-biçime getirebilir.
+%description -l tr.UTF-8
+GhostScript, PostScript ve PDF uyumlu dosyalarÄ±, X penceresinde
+gÃ¶sterebilir ve birÃ§ok yazÄ±cÄ±nÄ±n (renkli yazÄ±cÄ±lar dahil) basabileceÄŸi
+biÃ§ime getirebilir.
 
 %package gtk
 Summary:	Ghostscript with GTK+ console
-Summary(pl):	Ghostscript z konsol± GTK+
+Summary(pl.UTF-8):   Ghostscript z konsolÄ… GTK+
 Group:		Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
 Provides:	ghostscript-gtk = %{version}-%{release}
@@ -96,12 +96,12 @@ Obsoletes:	ghostscript-gtk
 %description gtk
 Ghostscript with GTK+ console.
 
-%description gtk -l pl
-Ghostscript z konsol± GTK+.
+%description gtk -l pl.UTF-8
+Ghostscript z konsolÄ… GTK+.
 
 %package devel
 Summary:	libgs header files
-Summary(pl):	Pliki nag³ówkowe libgs
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe libgs
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Provides:	ghostscript-devel = %{version}-%{release}
@@ -110,12 +110,12 @@ Obsoletes:	ghostscript-devel
 %description devel
 Header files for libgs - ghostscript shared library.
 
-%description devel -l pl
-Pliki nag³ówkowe libgs - wspó³dzielonej biblioteki ghostscript.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe libgs - wspÃ³Å‚dzielonej biblioteki ghostscript.
 
 %package ijs-devel
 Summary:	IJS development files
-Summary(pl):	Pliki dla programistów IJS
+Summary(pl.UTF-8):   Pliki dla programistÃ³w IJS
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Provides:	ghostscript-ijs-devel = %{version}-%{release}
@@ -124,12 +124,12 @@ Obsoletes:	ghostscript-ijs-devel
 %description ijs-devel
 IJS development files.
 
-%description ijs-devel -l pl
-Pliki do tworzenia programów z u¿yciem biblioteki IJS.
+%description ijs-devel -l pl.UTF-8
+Pliki do tworzenia programÃ³w z uÅ¼yciem biblioteki IJS.
 
 %package ijs-static
 Summary:	Static libijs library
-Summary(pl):	Statyczna biblioteka IJS
+Summary(pl.UTF-8):   Statyczna biblioteka IJS
 Group:		Development/Libraries
 Requires:	%{name}-ijs-devel = %{version}-%{release}
 Provides:	ghostscript-ijs-static = %{version}-%{release}
@@ -138,12 +138,12 @@ Obsoletes:	ghostscript-ijs-static
 %description ijs-static
 Static libijs library.
 
-%description ijs-static -l pl
+%description ijs-static -l pl.UTF-8
 Statyczna wersja biblioteki IJS.
 
 %package -n cups-filter-pstoraster
 Summary:	CUPS filter for support non-postscript printers
-Summary(pl):	Filtr CUPS-a obs³uguj±cy drukarki niepostscriptowe
+Summary(pl.UTF-8):   Filtr CUPS-a obsÅ‚ugujÄ…cy drukarki niepostscriptowe
 Group:		Applications/Printing
 Requires:	cups >= 1:1.1.16
 Requires:	ghostscript >= %{version}-%{release}
@@ -152,19 +152,19 @@ Conflicts:	ghostscript-afpl
 %description -n cups-filter-pstoraster
 CUPS filter for support non-postscript printers.
 
-%description -n cups-filter-pstoraster -l pl
-Filtr CUPS-a obs³uguj±cy drukarki niepostscriptowe.
+%description -n cups-filter-pstoraster -l pl.UTF-8
+Filtr CUPS-a obsÅ‚ugujÄ…cy drukarki niepostscriptowe.
 
 %package -n cups-driver-pxl
 Summary:	CUPS PXL driver
-Summary(pl):	Sterownik CUPS dla drukarek PXL
+Summary(pl.UTF-8):   Sterownik CUPS dla drukarek PXL
 Group:		Applications/Printing
 Requires:	cups >= 1:1.1.16
 
 %description -n cups-driver-pxl
 CUPS PXL driver.
 
-%description -n cups-driver-pxl -l pl
+%description -n cups-driver-pxl -l pl.UTF-8
 Sterownik CUPS dla drukarek PXL.
 
 %prep
