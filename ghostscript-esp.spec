@@ -6,11 +6,11 @@
 #
 %define gnu_ver 8.15
 Summary:	PostScript & PDF interpreter and renderer
-Summary(de.UTF-8):   PostScript & PDF Interpreter und Renderer
-Summary(fr.UTF-8):   Interpréteur et visualisateur PostScript & PDF
-Summary(ja.UTF-8):   PostScript インタープリタ・レンダラー
-Summary(pl.UTF-8):   Bezpłatny interpreter i renderer PostScriptu i PDF
-Summary(tr.UTF-8):   PostScript & PDF yorumlayıcı ve gösterici
+Summary(de.UTF-8):	PostScript & PDF Interpreter und Renderer
+Summary(fr.UTF-8):	Interpréteur et visualisateur PostScript & PDF
+Summary(ja.UTF-8):	PostScript インタープリタ・レンダラー
+Summary(pl.UTF-8):	Bezpłatny interpreter i renderer PostScriptu i PDF
+Summary(tr.UTF-8):	PostScript & PDF yorumlayıcı ve gösterici
 Name:		ghostscript-esp
 Version:	%{gnu_ver}.3
 Release:	1
@@ -87,7 +87,7 @@ biçime getirebilir.
 
 %package gtk
 Summary:	Ghostscript with GTK+ console
-Summary(pl.UTF-8):   Ghostscript z konsolą GTK+
+Summary(pl.UTF-8):	Ghostscript z konsolą GTK+
 Group:		Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
 Provides:	ghostscript-gtk = %{version}-%{release}
@@ -101,7 +101,7 @@ Ghostscript z konsolą GTK+.
 
 %package devel
 Summary:	libgs header files
-Summary(pl.UTF-8):   Pliki nagłówkowe libgs
+Summary(pl.UTF-8):	Pliki nagłówkowe libgs
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Provides:	ghostscript-devel = %{version}-%{release}
@@ -115,7 +115,7 @@ Pliki nagłówkowe libgs - współdzielonej biblioteki ghostscript.
 
 %package ijs-devel
 Summary:	IJS development files
-Summary(pl.UTF-8):   Pliki dla programistów IJS
+Summary(pl.UTF-8):	Pliki dla programistów IJS
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Provides:	ghostscript-ijs-devel = %{version}-%{release}
@@ -129,7 +129,7 @@ Pliki do tworzenia programów z użyciem biblioteki IJS.
 
 %package ijs-static
 Summary:	Static libijs library
-Summary(pl.UTF-8):   Statyczna biblioteka IJS
+Summary(pl.UTF-8):	Statyczna biblioteka IJS
 Group:		Development/Libraries
 Requires:	%{name}-ijs-devel = %{version}-%{release}
 Provides:	ghostscript-ijs-static = %{version}-%{release}
@@ -143,7 +143,7 @@ Statyczna wersja biblioteki IJS.
 
 %package -n cups-filter-pstoraster
 Summary:	CUPS filter for support non-postscript printers
-Summary(pl.UTF-8):   Filtr CUPS-a obsługujący drukarki niepostscriptowe
+Summary(pl.UTF-8):	Filtr CUPS-a obsługujący drukarki niepostscriptowe
 Group:		Applications/Printing
 Requires:	cups >= 1:1.1.16
 Requires:	ghostscript >= %{version}-%{release}
@@ -157,7 +157,7 @@ Filtr CUPS-a obsługujący drukarki niepostscriptowe.
 
 %package -n cups-driver-pxl
 Summary:	CUPS PXL driver
-Summary(pl.UTF-8):   Sterownik CUPS dla drukarek PXL
+Summary(pl.UTF-8):	Sterownik CUPS dla drukarek PXL
 Group:		Applications/Printing
 Requires:	cups >= 1:1.1.16
 
