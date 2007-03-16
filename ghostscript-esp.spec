@@ -12,12 +12,12 @@ Summary(ja.UTF-8):	PostScript インタープリタ・レンダラー
 Summary(pl.UTF-8):	Bezpłatny interpreter i renderer PostScriptu i PDF
 Summary(tr.UTF-8):	PostScript & PDF yorumlayıcı ve gösterici
 Name:		ghostscript-esp
-Version:	%{gnu_ver}.3
+Version:	%{gnu_ver}.4
 Release:	1
 License:	GPL
 Group:		Applications/Graphics
 Source0:	http://ftp.easysw.com/pub/ghostscript/%{version}/espgs-%{version}-source.tar.bz2
-# Source0-md5:	4ec87a3da20c1b433ffbe0ffe3675fcd
+# Source0-md5:	e74e0463e0bfb1cea3db245d8e71828c
 # we need to link with libjpeg recompiled with our parameters
 Source2:	ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz
 # Source2-md5:	dbd5f3b47ed13132f04c685d608a7547
