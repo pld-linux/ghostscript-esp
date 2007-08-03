@@ -1,4 +1,8 @@
-#
+# Artifex has released GPL Ghostscript 8.60, which is is now the Ghostscript
+# recommended for use in Linux distributions.
+# Merge ESP Ghostscript and GPL Ghostscript 
+# ghostcript-esp is depreceated
+
 # Conditional build:
 %bcond_without	cups		# without CUPS support
 %bcond_with	svga		# with svgalib display support (vgalib and lvga256 devices)
