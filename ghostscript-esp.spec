@@ -38,7 +38,6 @@ BuildRequires:	automake
 %{?with_cups:BuildRequires:	cups-devel}
 BuildRequires:	docbook-style-dsssl
 BuildRequires:	glib2-devel
-BuildRequires:	xorg-lib-libX11-devel
 # for gsx
 #BuildRequires:	gtk+-devel
 BuildRequires:	libpng-devel >= 1.0.8
@@ -51,6 +50,9 @@ BuildRequires:	pkgconfig
 # for documentation regeneration
 BuildRequires:	tetex
 BuildRequires:	tetex-dvips
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXt-devel
 Provides:	ghostscript = %{version}-%{release}
 Obsoletes:	ghostscript
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -217,8 +219,7 @@ install -d $RPM_BUILD_ROOT{%{_datadir}/ghostscript/lib,%{_libdir},%{_includedir}
 	docdir=%{_docdir}/%{name}-%{version} \
 	gsdir=%{_datadir}/ghostscript
 
-cd ijs
-%{__make} install \
+%{__make} -C ijs install \
 	prefix=$RPM_BUILD_ROOT%{_prefix} \
 	bindir=$RPM_BUILD_ROOT%{_bindir} \
 	datadir=$RPM_BUILD_ROOT%{_datadir} \
@@ -226,7 +227,6 @@ cd ijs
 	includedir=$RPM_BUILD_ROOT%{_includedir} \
 	mandir=$RPM_BUILD_ROOT%{_mandir} \
 	pkgconfigdatadir=$RPM_BUILD_ROOT%{_pkgconfigdir}
-cd ..
 
 install lib/{gs_frsd,pdfopt,pdfwrite}.ps $RPM_BUILD_ROOT%{_datadir}/ghostscript/lib
 
