@@ -17,7 +17,7 @@ Summary(pl.UTF-8):	Bezpłatny interpreter i renderer PostScriptu i PDF
 Summary(tr.UTF-8):	PostScript & PDF yorumlayıcı ve gösterici
 Name:		ghostscript-esp
 Version:	%{gnu_ver}.4
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Graphics
 Source0:	http://ftp.easysw.com/pub/ghostscript/%{version}/espgs-%{version}-source.tar.bz2
